@@ -1,105 +1,124 @@
+/* Importación de la fuente Inter */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* Reset básico para asegurar que el cuerpo de la página ocupe todo el espacio */
+html, body {
+    height: 100%; /* Asegura que html y body ocupen el 100% de la altura del viewport */
+    margin: 0; /* Elimina márgenes predeterminados */
+    padding: 0; /* Elimina paddings predeterminados */
+    /* Asegura que padding y border se incluyan en el cálculo del ancho y alto */
+    box-sizing: border-box; 
+}
 
 body {
     font-family: 'Inter', sans-serif;
-    background-color: #f0f2f5;
+    background-color: #f0f2f5; /* Fondo suave */
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
-    margin: 0;
-    padding: 1rem;
-    box-sizing: border-box;
-    overflow: hidden;
+    min-height: 100vh; /* Ocupa al menos toda la altura de la ventana */
+    /* Padding en el body para desktop/tablet, será sobrescrito en móvil */
+    padding: 1rem; 
+    overflow: hidden; /* Evitar scroll en el body principal */
 }
-@media (min-width: 640px) {
+@media (min-width: 640px) { /* Para pantallas pequeñas y más grandes */
     body {
         padding: 2rem;
     }
 }
+/* AJUSTE CLAVE: Eliminar padding del body en pantallas móviles para vista de pantalla completa */
+@media (max-width: 767px) {
+    body {
+        padding: 0; /* Elimina el padding para que el chat-container ocupe todo el ancho */
+    }
+}
+
 
 .chat-container {
     width: 100%;
-    max-width: 600px;
-    height: 95vh;
+    max-width: 600px; /* Ancho máximo en pantallas grandes */
+    height: 95vh; /* Ocupa la mayor parte de la altura de la ventana */
     display: flex;
     flex-direction: column;
-    border-radius: 1.5rem;
-    overflow: hidden;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    border-radius: 1.5rem; /* Bordes muy redondeados */
+    overflow: hidden; /* Muy importante para contener el scroll de los mensajes */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15); /* Sombra suave y atractiva */
     background-color: #ffffff;
-    transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out; /* Transiciones suaves al redimensionar */
 }
-@media (max-width: 767px) {
+@media (max-width: 767px) { /* Ajustes específicos para móviles */
     .chat-container {
-        height: 100vh;
-        width: 100vw;
-        border-radius: 1;
-
+        height: 100vh; /* Extender a la altura completa de la pantalla */
+        width: 100vw; /* Extender a la anchura completa de la pantalla */
+        border-radius: 0; /* CORREGIDO: Quitar bordes redondeados para ocupar toda la pantalla en móvil */
     }
 }
-@media (min-width: 768px) {
+@media (min-width: 768px) { /* Para tablets y más grandes */
     .chat-container {
-        height: 85vh;
+        height: 85vh; /* Ajuste para desktop */
     }
 }
 
 .chat-header {
-    background: linear-gradient(to right, #3182ce, #4299e1);
+    background: linear-gradient(to right, #3182ce, #4299e1); /* Gradiente azul vibrante */
     color: white;
     padding: 1rem 1.5rem;
     font-weight: 600;
     font-size: 1.25rem;
     border-top-left-radius: 1.5rem;
     border-top-right-radius: 1.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    display: flex; /* Usar flexbox */
+    align-items: center; /* Alinear verticalmente los ítems */
+    justify-content: space-between; /* Distribuir espacio entre los ítems */
     gap: 0.75rem;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil en el header */
 }
-@media (max-width: 767px) {
+@media (max-width: 767px) { /* Ajustes para el header en móviles */
     .chat-header {
-        border-top-left-radius: 1;
-        border-top-right-radius: 1;
+        border-top-left-radius: 0; /* CORREGIDO: Eliminar bordes redondeados en móviles */
+        border-top-right-radius: 0; /* CORREGIDO: Eliminar bordes redondeados en móviles */
     }
 }
 
+
 .header-logo-container {
-    flex-shrink: 0;
-    margin-right: 0.75rem;
+    /* Contenedor explícito para el logo */
+    flex-shrink: 0; /* Evita que el logo se encoja */
+    margin-right: 0.75rem; /* Espacio a la derecha del logo */
 }
 
 .header-logo {
-    border-radius: 50%;
-    width: 2.5rem;
-    height: 2.5rem;
-    min-width: 2.5rem;
+    border-radius: 50%; /* Asegura que el logo sea circular */
+    width: 2.5rem; /* 40px */
+    height: 2.5rem; /* 40px */
+    min-width: 2.5rem; /* Evitar que se encoja */
     min-height: 2.5rem;
     object-fit: cover;
-    background-color: #a0aec0;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    background-color: #a0aec0; /* Color de fondo si la imagen no carga */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Sombra para el logo */
 }
 
 .header-title-container {
-    flex-grow: 1;
-    text-align: center;
+    flex-grow: 1; /* Permite que el contenedor del título ocupe el espacio disponible */
+    text-align: center; /* Centra el texto dentro de este contenedor */
 }
 
 .header-title-container h1 {
-    font-size: 1.25rem;
+    font-size: 1.25rem; /* Ajuste el tamaño de fuente si es necesario */
     font-weight: 600;
-    margin: 0;
-    line-height: 1.2;
+    margin: 0; /* Elimina el margen predeterminado del h1 */
+    line-height: 1.2; /* Ajusta la altura de línea */
 }
 
 .header-spacer {
+    /* Un elemento de relleno para equilibrar el espacio si es necesario */
     flex-shrink: 0;
-    width: calc(2.5rem + 0.75rem);
+    width: calc(2.5rem + 0.75rem); /* Ancho del logo + su margin-right */
+    /* Este spacer tiene el mismo ancho que el logo-container para centrar el título */
 }
-@media (max-width: 480px) {
+@media (max-width: 480px) { /* Ajustes para pantallas muy pequeñas */
     .chat-header {
-        font-size: 1rem;
+        font-size: 1rem; /* Fuente más pequeña para el título en móviles */
         padding: 0.75rem 1rem;
     }
     .header-logo-container {
@@ -119,35 +138,36 @@ body {
     }
 }
 
+
 .chat-messages {
     flex-grow: 1;
     padding: 1.5rem;
-    overflow-y: auto;
-    background-color: #f8fafc;
+    overflow-y: auto; /* Permite el scroll vertical solo en los mensajes */
+    background-color: #f8fafc; /* Fondo de mensajes muy claro */
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 1rem; /* Espacio entre burbujas de mensaje */
 }
 
 .message {
     display: flex;
-    align-items: flex-end;
-    gap: 0.5rem;
+    align-items: flex-end; /* Alinea los avatares en la parte inferior de la burbuja */
+    gap: 0.5rem; /* Espacio entre avatar y burbuja */
 }
 
 .message-bubble {
-    max-width: 85%;
+    max-width: 85%; /* Se mantiene el max-width para que el texto no ocupe todo el ancho */
     padding: 0.75rem 1rem;
     border-radius: 1.25rem;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
-    word-wrap: break-word;
-    line-height: 1.4;
-    position: relative;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08); /* Sombra ligera para las burbujas */
+    word-wrap: break-word; /* Asegura que el texto largo se ajusta */
+    line-height: 1.4; /* Espaciado entre líneas */
+    position: relative; /* Para posicionar el avatar si es necesario */
 }
 .message-avatar {
-    width: 2rem;
-    height: 2rem;
-    min-width: 2rem;
+    width: 2rem; /* 32px */
+    height: 2rem; /* 32px */
+    min-width: 2rem; /* Evitar que se encoja */
     min-height: 2rem;
     border-radius: 50%;
     display: flex;
@@ -156,33 +176,34 @@ body {
     font-size: 0.875rem;
     font-weight: 600;
     color: white;
-    flex-shrink: 0;
+    flex-shrink: 0; /* Evitar que el avatar se encoja */
 }
 
 .user.message {
-    flex-direction: row-reverse;
-    justify-content: flex-start;
-    display: flex;
+    flex-direction: row-reverse; /* Cambia el orden de los elementos para que el avatar vaya primero y la burbuja después */
+    justify-content: flex-start ; /* Alinea el contenedor completo del mensaje a la DERECHA */
+    display: flex; /* Asegura que flexbox esté habilitado */
 }
 .user.message .message-bubble {
-    background-color: #e0f2fe;
+    background-color: #e0f2fe; /* Azul cielo claro para los mensajes del usuario */
     border-bottom-left-radius: 1.25rem;
     border-bottom-right-radius: 0.25rem;
 }
 .user.message .message-avatar {
-    background-color: #3182ce;
+    background-color: #3182ce; /* Azul para el avatar de usuario */
+    margin-left: 0.5rem; /* Añade espacio a la izquierda del avatar del usuario, empujando la burbuja a la derecha */
 }
 
 .bot.message {
-    justify-content: flex-start;
+    justify-content: flex-start; /* Alinea los mensajes del bot a la izquierda */
 }
 .bot.message .message-bubble {
-    background-color: #ffffff;
-    border-bottom-left-radius: 0.25rem;
+    background-color: #ffffff; /* Blanco puro para el bot */
+    border-bottom-left-radius: 0.25rem; /* Esquina inferior izquierda más cuadrada */
 }
 .bot.message .message-avatar {
     background-color: transparent;
-    overflow: hidden;
+    overflow: hidden; /* Asegura que la imagen del bot no se desborde */
 }
 .bot.message .message-avatar img {
     width: 100%;
@@ -192,16 +213,16 @@ body {
 
 .message-time {
     font-size: 0.75rem;
-    color: #718096;
+    color: #718096; /* Gris sutil para la hora */
     margin-top: 0.5rem;
-    display: block;
+    display: block; /* Para que la hora esté en su propia línea */
     text-align: right;
 }
 
 .chat-input-area {
     display: flex;
     padding: 1rem 1.5rem;
-    background-color: #edf2f7;
+    background-color: #edf2f7; /* Gris claro para el área de input */
     border-bottom-left-radius: 1.5rem;
     border-bottom-right-radius: 1.5rem;
     gap: 0.75rem;
@@ -219,12 +240,12 @@ body {
     transition: border-color 0.2s, box-shadow 0.2s;
 }
 .chat-input:focus {
-    border-color: #4299e1;
-    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.06), 0 0 0 3px rgba(66, 153, 225, 0.2);
+    border-color: #4299e1; /* Borde azul al enfocar */
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.06), 0 0 0 3px rgba(66, 153, 225, 0.2); /* Sombra azul */
 }
 
 .send-button {
-    background: linear-gradient(to right, #4299e1, #3182ce);
+    background: linear-gradient(to right, #4299e1, #3182ce); /* Gradiente azul */
     color: white;
     border: none;
     border-radius: 1.5rem;
@@ -243,11 +264,12 @@ body {
     box-shadow: 0 6px 15px rgba(66, 153, 225, 0.5);
 }
 .send-button:disabled {
-    background: #a0aec0;
+    background: #a0aec0; /* Color gris cuando está deshabilitado */
     cursor: not-allowed;
     box-shadow: none;
 }
 
+/* Contenedor y botones de sugerencias */
 .suggestions-container {
     display: flex;
     flex-wrap: wrap;
@@ -256,7 +278,7 @@ body {
     justify-content: flex-start;
 }
 .suggestion-button {
-    background-color: #e2e8f0;
+    background-color: #e2e8f0; /* Gris claro para los botones de sugerencia */
     color: #2d3748;
     border: none;
     border-radius: 1.25rem;
@@ -265,34 +287,35 @@ body {
     font-size: 0.875rem;
     transition: all 0.2s ease-in-out;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
-    white-space: normal;
-    overflow: visible;
-    text-overflow: clip;
-    max-width: 100%;
-    flex-grow: 1;
-    text-align: left;
-    word-break: break-word;
-    height: auto;
-    min-height: 2.5rem;
+    white-space: normal; /* Permitir que el texto se envuelva */
+    overflow: visible; /* Asegurar que el texto completo sea visible */
+    text-overflow: clip; /* Eliminar puntos suspensivos */
+    max-width: 100%; /* Permitir que ocupe todo el ancho disponible */
+    flex-grow: 1; /* Permitir que los botones se extiendan en una línea */
+    text-align: left; /* Alinear texto a la izquierda dentro del botón */
+    word-break: break-word; /* Romper palabras largas si es necesario */
+    height: auto; /* Permitir que la altura se ajuste al contenido */
+    min-height: 2.5rem; /* Altura mínima para que sean fáciles de tocar */
 }
 .suggestion-button:hover {
     background-color: #cbd5e0;
     transform: translateY(-1px);
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
-@media (max-width: 639px) {
+@media (max-width: 639px) { /* Ajustes para móviles */
     .suggestion-button {
-        flex-grow: 1;
-        font-size: 0.8rem;
+        flex-grow: 1; /* Los botones ocupan todo el ancho disponible */
+        font-size: 0.8rem; /* Reducir ligeramente la fuente en móviles */
     }
 }
 
+/* Indicador de carga (Typing indicator) */
 .loading-dots {
     display: flex;
     align-items: center;
     justify-content: center;
     margin-top: 0.5rem;
-    height: 1.5rem;
+    height: 1.5rem; /* Altura para el indicador */
 }
 .loading-dots span {
     display: inline-block;
@@ -312,13 +335,14 @@ body {
     40% { transform: scale(1); }
 }
 
+/* Estilos para el texto formateado por Markdown (resaltado) */
 .message-bubble strong {
     font-weight: 700;
-    color: #2b6cb0;
+    color: #2b6cb0; /* Azul oscuro para negritas y títulos */
 }
 .message-bubble em {
     font-style: italic;
-    color: #4299e1;
+    color: #4299e1; /* Un toque de azul más claro para cursivas */
 }
 .message-bubble ul {
     list-style-type: disc;
@@ -333,13 +357,14 @@ body {
     font-weight: 700;
     margin-top: 1rem;
     margin-bottom: 0.5rem;
-    color: #2b6cb0;
+    color: #2b6cb0; /* Azul oscuro para todos los encabezados */
     line-height: 1.2;
 }
 .message-bubble p {
     margin-bottom: 0.5rem;
 }
+/* Para el efecto de typing, la burbuja también se expande */
 .typing-bubble {
-    box-shadow: none;
+    box-shadow: none; /* Sin sombra para el typing indicator */
     background-color: transparent;
 }
